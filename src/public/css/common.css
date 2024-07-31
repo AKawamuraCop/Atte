@@ -1,0 +1,84 @@
+html, body{
+    height: 100%;
+}
+
+.app{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+/* ヘッダー */
+.header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 90px;
+    background-color: #ffffff;
+}
+.header__heading{
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 32px;
+    padding-left: 40px;
+}
+
+.header-nav{
+    display: flex;
+}
+
+.header-nav__list{
+    margin-right: 20px;
+    list-style: none;
+
+}
+
+.nav__link{
+    text-decoration: none;
+    font-size: 12px;
+    font-family: sans-serif;
+    color: #000000;
+
+}
+/* コンテンツ */
+.content{
+    background-color: #f8f8ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.content__heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: sans-serif;
+}
+
+/* フッター */
+.footer{
+    align-items: center;
+    text-align: center;
+    height: 50px;
+    margin: 0 auto;
+}
+.copyright{
+    font-size: 13px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+/* ボタン */
+.btn {
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 8px 12px;
+    border: none;
+    background-color: #0000ff;
+    color: #FFF;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
