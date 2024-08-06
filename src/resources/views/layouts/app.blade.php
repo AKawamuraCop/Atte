@@ -13,11 +13,13 @@
     <div class="app">
         <header class="header">
             <h1 class="header__heading">Atte</h1>
+            @if(Auth::check())
             <ul class="header-nav">
                 <li class="header-nav__list"><a class="nav__link" href="">ホーム</a></li>
                 <li class="header-nav__list"><a class="nav__link" href="">日付一覧</a></li>
                 <li class="header-nav__list"><a class="nav__link" href="">ログアウト</a></li>
             </ul>
+            @endif
         </header>
         <div class="content">
             @yield('content')

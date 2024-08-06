@@ -1,0 +1,37 @@
+.content {
+    width: 100%;
+    align-items: center;
+
+}
+.date-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.date-navigation button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.date-navigation span {
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+.record__list{
+    width: 70%;
+    border-collapse: collapse;
+
+}
+
+
+.record__list-label, .record__list-item{
+    padding: 20px 30px;
+    text-align: left;
+    border-top: 1px solid #000000;
+}
+

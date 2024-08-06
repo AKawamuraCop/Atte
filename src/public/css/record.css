@@ -1,0 +1,26 @@
+.content{
+    width: 100%;
+    align-items: center;
+
+}
+.content__item{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    width: 70%;
+}
+
+.content__item-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    height: 180px;
+    background-color: #F0F0F0;
+    color: #82756A;
+    border: 1px solid #D9C6B5;
+    margin: 16px;
+    font-size: 18px;
+    text-align: center;
+}
