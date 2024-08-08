@@ -4,11 +4,14 @@
 
 }
 .content__item{
+    margin-top: 32px;
+    width: 54%;
+}
+
+.content__item-form{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin-top: 32px;
-    width: 70%;
 }
 
 .content__item-card{
@@ -17,10 +20,18 @@
     align-items: center;
     width: 450px;
     height: 180px;
-    background-color: #F0F0F0;
-    color: #82756A;
-    border: 1px solid #D9C6B5;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
     margin: 16px;
     font-size: 18px;
     text-align: center;
+    cursor: pointer;
+}
+
+.content__item-card:disabled {
+    /* 非活性状態のボタンスタイル */
+    color: #dcdcdc;
+    cursor: not-allowed;
 }
