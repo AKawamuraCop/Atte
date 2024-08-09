@@ -15,9 +15,15 @@
             <h1 class="header__heading">Atte</h1>
             @if(Auth::check())
             <ul class="header-nav">
-                <li class="header-nav__list"><a class="nav__link" href="">ホーム</a></li>
-                <li class="header-nav__list"><a class="nav__link" href="">日付一覧</a></li>
-                <li class="header-nav__list"><a class="nav__link" href="">ログアウト</a></li>
+                <li class="header-nav__list"><a class="nav__link" href="/">ホーム</a></li>
+                <li class="header-nav__list"><a class="nav__link" href="/attendance">日付一覧</a></li>
+                <form action="/logout" method="post"> 
+                    @csrf
+                    <li class="header-nav__list">
+                         <input class="logout__button" type="submit" value="ログアウト">
+                    </li>
+                </form>
+               
             </ul>
             @endif
         </header>

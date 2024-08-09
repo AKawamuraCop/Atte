@@ -9,7 +9,7 @@
     <form class = "date__form" method="get" action="/attendance">
         <div class="date-navigation">
             <button type="submit" name="action" value="previous">&lt;</button>
-            <span>{{$date}}</span>
+            <span class="date_label">{{$date}}</span>
             <button type="submit" name="action" value="next">&gt;</button>
             <input type="hidden" name="date" value="{{$date}}">
         </div>
@@ -33,5 +33,6 @@
         @endforeach
     </table>
 
+    {{ $users->appends(request()->query())->links('vendor.pagination.custom') }}
 </div>
 @endsection

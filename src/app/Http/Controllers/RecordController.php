@@ -89,8 +89,8 @@ class RecordController extends Controller
                 $date = $date->toDateString();
             }
         }
-
-        $users = user::all();
+        $query = User::query();
+        $users = $query->paginate(5); // ページネーションを追加
 
         foreach($users as $user){
 
@@ -162,8 +162,6 @@ class RecordController extends Controller
 
 
         }
-
-        
 
         return view('dailyRecord', compact('users','date'));
     }
