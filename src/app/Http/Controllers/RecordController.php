@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\TimeRecord;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 
 class RecordController extends Controller
@@ -164,5 +165,123 @@ class RecordController extends Controller
         }
 
         return view('dailyRecord', compact('users','date'));
+    }
+
+
+    public function showUser()
+    {
+        $query = User::query();
+        $users = $query->paginate(5); // ページネーションを追加
+
+         return view('userList', compact('users'));
+    }
+
+    public function monthlySearch(Request $request)
+    {
+        $userId = $request->input('user_id');
+        $user = User::find($userId);
+
+        // 今月の開始日
+        if (!$request->has('month')) {
+            $month = Carbon::now()->startOfMonth();
+        }
+        else {
+            $month = Carbon::parse($request->input('month'). '-01')->startOfMonth();
+            // ボタンの識別子に基づいて月を変更
+            if ($request->input('action') == 'previous') {
+                $month = $month->subMonth()->startOfMonth();
+            } elseif ($request->input('action') == 'next') {
+                $month = $month->addMonth()->startOfMonth();
+            } else {
+                $month = $month->startOfMonth();
+            }
+        }
+
+        $month = $month->format('Y-m');
+
+        $query = TimeRecord::selectRaw('DATE(clock_in) as date')
+            ->distinct()
+            ->where('user_id', $userId)
+            ->whereYear('clock_in', Carbon::parse($month)->year)
+            ->whereMonth('clock_in', Carbon::parse($month)->month);
+
+        $monthlyWork = $query->paginate(5); // ページネーションを追加
+
+
+            foreach($monthlyWork as $workDate){
+
+            $workDate->date = Carbon::parse($workDate->date)->toDateString();
+
+            //勤務開始を取得
+            $workStart = TimeRecord::where('user_id', $userId)
+                ->whereDate('clock_in', $workDate->date)
+                ->where('category_id', 1)
+                ->first();
+
+            $workDate->work_start = $workStart ? Carbon::parse($workStart->clock_in) : null;
+
+            //勤務終了を取得
+            $workEnd = TimeRecord::where('user_id', $userId)
+                ->whereDate('clock_in', $workDate->date)
+                ->where('category_id', 2)
+                ->first();
+
+            $workDate->work_end = $workEnd ? Carbon::parse($workEnd->clock_in): null;
+
+            //休憩開始時間を取得
+            $breakStarts = TimeRecord::where('user_id', $userId)
+                ->whereDate('clock_in', $workDate->date)
+                ->where('category_id', 3)
+                ->orderBy('clock_in')
+                ->get();
+
+            //休憩終了時間を取得
+            $breakEnds = TimeRecord::where('user_id', $userId)
+                ->whereDate('clock_in', $workDate->date)
+                ->where('category_id', 4)
+                ->orderBy('clock_in')
+                ->get();
+
+            $totalBreakSeconds = 0;
+
+            // 休憩開始と終了をペアにして合計時間を計算
+            foreach ($breakStarts as $breakStart) {
+                $breakEnd = $breakEnds->firstWhere('clock_in', '>', $breakStart->clock_in);
+                if ($breakEnd) {
+                    $totalBreakSeconds += Carbon::parse($breakEnd->clock_in)->diffInSeconds(Carbon::parse($breakStart->clock_in));
+                    // 使用済みの休憩終了をリストから削除
+                    $breakEnds = $breakEnds->reject(function ($item) use ($breakEnd) {
+                        return $item->id == $breakEnd->id;
+                    });
+                }
+            }
+
+            if($totalBreakSeconds){
+                $hours = intdiv($totalBreakSeconds,3600);
+                $minutes = intdiv($totalBreakSeconds % 3600, 60);
+                $seconds = $totalBreakSeconds % 60;
+                $workDate->total_break_time = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+
+            }
+
+
+            //勤務時間を計算
+            if ($workDate->work_start && $workDate->work_end) {
+                $workedSeconds = $workDate->work_start->diffInSeconds($workDate->work_end) - $totalBreakSeconds;
+                $hours = intdiv($workedSeconds,3600);
+                $minutes = intdiv($workedSeconds % 3600, 60);
+                $seconds = $workedSeconds % 60;
+                $workDate->worked_hours = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+
+            } 
+            else {
+            $workDate->worked_hours = null; // 出勤または退勤時間がない場合
+            }
+
+
+        }
+
+
+        return view('monthlyRecord', compact('monthlyWork','month','user'));
     }
 }

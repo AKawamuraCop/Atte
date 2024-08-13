@@ -18,5 +18,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/',[RecordController::class, 'record']);
     Route::post('/', [RecordController::class, 'store']);
     Route::get('/attendance',[RecordController::class, 'search']);
+    Route::get('/userList',[RecordController::class, 'showUser']);
+    Route::get('/monthlyAttendance',[RecordController::class, 'monthlySearch']);
 
 });

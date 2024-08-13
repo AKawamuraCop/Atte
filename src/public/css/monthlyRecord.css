@@ -1,0 +1,56 @@
+.content {
+    width: 100%;
+    align-items: center;
+
+}
+
+.month-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.month_label {
+    padding: 18px;
+}
+
+.month-navigation button {
+    background: white;
+    font-size: 18px;
+    cursor: pointer;
+    border: 1px solid #0000ff;
+    padding: 2px 15px;
+    color: #0000ff;
+}
+
+.month-navigation span {
+    margin: 0 10px;
+    font-size: 20px;
+}
+.record__heading {
+    width: 70%;
+    /* Ensure it spans the full width of the container */
+    text-align: left;
+    /* Left-align text within this element */
+    display: flex;
+    /* Use flexbox for alignment */
+    justify-content: flex-start;
+    /* Align children to the start (left) */
+}
+.record__title{
+    margin-left: 0;
+}
+.record__list {
+    width: 70%;
+    border-collapse: collapse;
+
+}
+
+
+.record__list-label,
+.record__list-item {
+    padding: 20px 30px;
+    text-align: left;
+    border-top: 1px solid #000000;
+}
