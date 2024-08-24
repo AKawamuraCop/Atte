@@ -173,7 +173,7 @@ class RecordController extends Controller
         $query = User::query();
         $users = $query->paginate(5); // ページネーションを追加
 
-         return view('userList', compact('users'));
+        return view('userList', compact('users'));
     }
 
     public function monthlySearch(Request $request)

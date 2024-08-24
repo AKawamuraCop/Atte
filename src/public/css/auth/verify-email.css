@@ -1,0 +1,37 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.container-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.content-text {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.resent-form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.resent-form__btn {
+    display: block;
+    margin: 0 auto;
+}

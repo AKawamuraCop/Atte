@@ -13,7 +13,7 @@
     <div class="app">
         <header class="header">
             <h1 class="header__heading">Atte</h1>
-            @if(Auth::check())
+            @if(Auth::check()&& Auth::user()->hasVerifiedEmail())
             <ul class="header-nav">
                 <li class="header-nav__list"><a class="nav__link" href="/">ホーム</a></li>
                 <li class="header-nav__list"><a class="nav__link" href="/attendance">日付一覧</a></li>
