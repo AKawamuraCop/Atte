@@ -4,14 +4,17 @@
 人事評価のため
 </br>
 ## アプリケーションURL
+なし
 </br>
 
 ## 他のリポジトリ
+なし
 </br>
 
 ## 機能一覧
 ・ログイン/ログアウト機能<br />
 ・新規会員登録機能<br />
+・メール認証機能<br />
 ・打刻機能<br />
 ・日付別勤怠閲覧機能<br />
 ・ユーザー一覧閲覧機能<br />
@@ -47,6 +50,16 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
+```
+```
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=your_email@example.com
+MAIL_FROM_NAME="Your Name or Your App Name"
 ```
 5. アプリケーションキーの作成
 ```
