@@ -30,13 +30,9 @@
 }
 .record__heading {
     width: 70%;
-    /* Ensure it spans the full width of the container */
     text-align: left;
-    /* Left-align text within this element */
     display: flex;
-    /* Use flexbox for alignment */
     justify-content: flex-start;
-    /* Align children to the start (left) */
 }
 .record__title{
     margin-left: 0;

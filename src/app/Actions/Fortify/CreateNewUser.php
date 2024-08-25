@@ -34,11 +34,6 @@ class CreateNewUser implements CreatesNewUsers
 
 
 
-        // ここで明示的にログアウトさせる
-        \Illuminate\Support\Facades\Auth::logout();
-
-        Session::flush();
-
         return $user;
     }
 }

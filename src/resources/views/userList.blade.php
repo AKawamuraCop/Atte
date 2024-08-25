@@ -30,7 +30,6 @@
         </tr>
         @endforeach
     </table>
-
     {{ $users->appends(request()->query())->links('vendor.pagination.custom') }}
 </div>
 @endsection

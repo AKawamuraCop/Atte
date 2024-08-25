@@ -31,7 +31,6 @@
 }
 
 .content__item-card:disabled {
-    /* 非活性状態のボタンスタイル */
     color: #dcdcdc;
     cursor: not-allowed;
 }

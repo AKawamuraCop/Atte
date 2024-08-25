@@ -26,7 +26,7 @@
             <th class="record__list-label">休憩時間</th>
             <th class="record__list-label">勤務時間</th>
         </tr>
-         @foreach($monthlyWork as $workDate)
+        @foreach($monthlyWork as $workDate)
         <tr class="record__list-row">
             <td class="record__list-item">{{$workDate->date}}</td>
             <td class="record__list-item">{{ $workDate->work_start ? $workDate->work_start->format('H:i:s') : '未出勤' }}</td>
